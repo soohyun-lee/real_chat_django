@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  server:
+    image: realtime/django-chat:dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: 'chat-dev'
+    ports:
+      - "8000:8000"
+    # entrypoint: /entrypoint.sh
+    command: gunicorn --bind :8000 --workers 3 --threads 2 --capture-output --access-logfile /logs/gunicorn-access.log --timeout 300 --env DJANGO_SETTINGS_MODULE=buddya_backend.settings buddya_backend.wsgi:application
