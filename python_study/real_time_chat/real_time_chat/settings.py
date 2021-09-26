@@ -31,14 +31,14 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat',
-    'channels'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'real_time_chat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,7 +74,7 @@ ASGI_APPLICATION = 'real_time_chat.asgi.application'
 
 CHANNEL_LAYERS = {
     'default' : {
-        'BACKEND' : 'channels_reids.core.RedisChaanleLayer',
+        'BACKEND' : 'channels_redis.core.RedisChannelLayer',
         'CONFIG' : {
             'hosts' : [('127.0.0.1', 6379)],
         }
